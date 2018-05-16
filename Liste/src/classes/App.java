@@ -68,7 +68,7 @@ public class App extends Application {
 
 		itemName = new TextField();
 		itemName.setPromptText("Itemname to add");
-		itemName.setMaxSize(220, 40);
+		itemName.setPrefSize(220, 40);
 		itemName.setFont(new Font(20));
 		controls.add(itemName, 1, 0);
 
@@ -79,7 +79,7 @@ public class App extends Application {
 
 		index = new TextField();
 		index.setPromptText("Index");
-		index.setMaxSize(220, 40);
+		index.setPrefSize(220, 40);
 		index.setFont(new Font(20));
 		index.textProperty().addListener(new ChangeListener<String>() {
 
@@ -99,7 +99,7 @@ public class App extends Application {
 
 		itemName2 = new TextField();
 		itemName2.setPromptText("Reference Itemname");
-		itemName2.setMaxSize(220, 40);
+		itemName2.setPrefSize(220, 40);
 		itemName2.setFont(new Font(20));
 		controls.add(itemName2, 1, 1);
 
@@ -109,7 +109,7 @@ public class App extends Application {
 		controls.add(itemN2, 0, 1);
 
 		addFirst = new Button("Add in First");
-		addFirst.setMaxSize(220, 40);
+		addFirst.setPrefSize(220, 40);
 		addFirst.setOnAction(e -> {
 			list.addInFirst(this.getItem());
 			refreshListUI();
@@ -117,7 +117,7 @@ public class App extends Application {
 		controls.add(addFirst, 0, 3);
 
 		addLast = new Button("Add in Last");
-		addLast.setMaxSize(220, 40);
+		addLast.setPrefSize(220, 40);
 		addLast.setOnAction(e -> {
 			list.addInLast(this.getItem());
 			refreshListUI();
@@ -125,7 +125,7 @@ public class App extends Application {
 		controls.add(addLast, 0, 4);
 
 		addIndex = new Button("Add at Index");
-		addIndex.setMaxSize(220, 40);
+		addIndex.setPrefSize(220, 40);
 		addIndex.setOnAction(e -> {
 			list.addInIndex(this.getItem(), this.getIndex());
 			refreshListUI();
@@ -133,7 +133,7 @@ public class App extends Application {
 		controls.add(addIndex, 0, 5);
 
 		removeLast = new Button("Remove Last");
-		removeLast.setMaxSize(220, 40);
+		removeLast.setPrefSize(220, 40);
 		removeLast.setOnAction(e -> {
 			list.removeLast();
 			refreshListUI();
@@ -141,7 +141,7 @@ public class App extends Application {
 		controls.add(removeLast, 1, 4);
 
 		removeFirst = new Button("Remove First");
-		removeFirst.setMaxSize(220, 40);
+		removeFirst.setPrefSize(220, 40);
 		removeFirst.setOnAction(e -> {
 			list.removeFirst();
 			refreshListUI();
@@ -149,7 +149,7 @@ public class App extends Application {
 		controls.add(removeFirst, 1, 3);
 
 		removeIndex = new Button("Remove at Index");
-		removeIndex.setMaxSize(220, 40);
+		removeIndex.setPrefSize(220, 40);
 		removeIndex.setOnAction(e -> {
 			list.removeAtIndex(this.getIndex());
 			refreshListUI();
@@ -157,7 +157,7 @@ public class App extends Application {
 		controls.add(removeIndex, 1, 5);
 
 		addAItem = new Button("Add after Item");
-		addAItem.setMaxSize(220, 40);
+		addAItem.setPrefSize(220, 40);
 		addAItem.setOnAction(e -> {
 			list.addAfterItem(this.getItem(), this.getItem2());
 			refreshListUI();
@@ -165,7 +165,7 @@ public class App extends Application {
 		controls.add(addAItem, 0, 7);
 
 		addBItem = new Button("Add before Item");
-		addBItem.setMaxSize(220, 40);
+		addBItem.setPrefSize(220, 40);
 		addBItem.setOnAction(e -> {
 			list.addBeforeItem(this.getItem(), this.getItem2());
 			refreshListUI();
@@ -173,7 +173,7 @@ public class App extends Application {
 		controls.add(addBItem, 0, 6);
 
 		removeAItem = new Button("Remove after Item");
-		removeAItem.setMaxSize(220, 40);
+		removeAItem.setPrefSize(220, 40);
 		removeAItem.setOnAction(e -> {
 			list.removeAfterItem(this.getItem2());
 			refreshListUI();
@@ -181,7 +181,7 @@ public class App extends Application {
 		controls.add(removeAItem, 1, 7);
 
 		removeBItem = new Button("Remove before Item");
-		removeBItem.setMaxSize(220, 40);
+		removeBItem.setPrefSize(220, 40);
 		removeBItem.setOnAction(e -> {
 			list.removeBeforeItem(this.getItem2());
 			refreshListUI();
@@ -189,7 +189,7 @@ public class App extends Application {
 		controls.add(removeBItem, 1, 6);
 
 		removeSpec = new Button("Remove specific Item");
-		removeSpec.setMaxSize(220, 40);
+		removeSpec.setPrefSize(220, 40);
 		removeSpec.setOnAction(e -> {
 			list.removeSpecificItem(getItem2());
 			refreshListUI();
@@ -197,7 +197,7 @@ public class App extends Application {
 		controls.add(removeSpec, 1, 8);
 
 		sortByAlphabet = new Button("Sort by Alphabet");
-		sortByAlphabet.setMaxSize(220, 40);
+		sortByAlphabet.setPrefSize(220, 40);
 		sortByAlphabet.setOnAction(e -> {
 			list.sortByAlphabet();
 			refreshListUI();
@@ -205,7 +205,7 @@ public class App extends Application {
 		controls.add(sortByAlphabet, 0, 8);
 
 		count = new TextField("20");
-		count.setMaxSize(220, 40);
+		count.setPrefSize(220, 40);
 		count.setFont(new Font(20));
 		count.textProperty().addListener(new ChangeListener<String>() {
 
@@ -219,7 +219,7 @@ public class App extends Application {
 		controls.add(count, 0, 9);
 
 		addRNDMObjects = new Button("Create Random Objects");
-		addRNDMObjects.setMaxSize(220, 40);
+		addRNDMObjects.setPrefSize(220, 40);
 		addRNDMObjects.setOnAction(e -> {
 			createRNDMObjects(getCount());
 			refreshListUI();
