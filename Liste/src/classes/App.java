@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -29,6 +30,8 @@ public class App extends Application {
 	private GridPane controls;
 	private GridPane output;
 
+	private ScrollPane scroll;
+
 //	Controlobjects
 
 	private TextField itemName;
@@ -49,6 +52,8 @@ public class App extends Application {
 	private Button removeBItem;
 	private Button removeAItem;
 	private Button sortByAlphabet;
+	private Button addRNDMObjects;
+	private TextField count;
 
 	public void init() {
 
@@ -61,8 +66,8 @@ public class App extends Application {
 		controls.setVgap(9);
 		controls.setPadding(new Insets(18));
 
-		itemName = new TextField();
-		itemName.setMinSize(150, 30);
+		itemName = new TextField("New Item 001");
+		itemName.setMinSize(200, 50);
 		itemName.setFont(new Font(20));
 		controls.add(itemName, 1, 0);
 
@@ -71,8 +76,8 @@ public class App extends Application {
 		itemN.setTextFill(Color.WHITESMOKE);
 		controls.add(itemN, 0, 0);
 
-		index = new TextField();
-		index.setMinSize(150, 30);
+		index = new TextField("0");
+		index.setMinSize(200, 50);
 		index.setFont(new Font(20));
 		index.textProperty().addListener(new ChangeListener<String>() {
 
@@ -90,8 +95,8 @@ public class App extends Application {
 		ind.setTextFill(Color.WHITESMOKE);
 		controls.add(ind, 0, 2);
 
-		itemName2 = new TextField();
-		itemName2.setMinSize(150, 30);
+		itemName2 = new TextField("Reference Item");
+		itemName2.setMinSize(200, 50);
 		itemName2.setFont(new Font(20));
 		controls.add(itemName2, 1, 1);
 
@@ -101,7 +106,7 @@ public class App extends Application {
 		controls.add(itemN2, 0, 1);
 
 		addFirst = new Button("Add in First");
-		addFirst.setMinSize(150, 30);
+		addFirst.setMinSize(200, 50);
 		addFirst.setOnAction(e -> {
 			list.addInFirst(this.getItem());
 			refreshListUI();
@@ -109,7 +114,7 @@ public class App extends Application {
 		controls.add(addFirst, 0, 3);
 
 		addLast = new Button("Add in Last");
-		addLast.setMinSize(150, 30);
+		addLast.setMinSize(200, 50);
 		addLast.setOnAction(e -> {
 			list.addInLast(this.getItem());
 			refreshListUI();
@@ -117,7 +122,7 @@ public class App extends Application {
 		controls.add(addLast, 0, 4);
 
 		addIndex = new Button("Add at Index");
-		addIndex.setMinSize(150, 30);
+		addIndex.setMinSize(200, 50);
 		addIndex.setOnAction(e -> {
 			list.addInIndex(this.getItem(), this.getIndex());
 			refreshListUI();
@@ -125,7 +130,7 @@ public class App extends Application {
 		controls.add(addIndex, 0, 5);
 
 		removeLast = new Button("Remove Last");
-		removeLast.setMinSize(150, 30);
+		removeLast.setMinSize(200, 50);
 		removeLast.setOnAction(e -> {
 			list.removeLast();
 			refreshListUI();
@@ -133,7 +138,7 @@ public class App extends Application {
 		controls.add(removeLast, 1, 4);
 
 		removeFirst = new Button("Remove First");
-		removeFirst.setMinSize(150, 30);
+		removeFirst.setMinSize(200, 50);
 		removeFirst.setOnAction(e -> {
 			list.removeFirst();
 			refreshListUI();
@@ -141,7 +146,7 @@ public class App extends Application {
 		controls.add(removeFirst, 1, 3);
 
 		removeIndex = new Button("Remove at Index");
-		removeIndex.setMinSize(150, 30);
+		removeIndex.setMinSize(200, 50);
 		removeIndex.setOnAction(e -> {
 			list.removeAtIndex(this.getIndex());
 			refreshListUI();
@@ -149,7 +154,7 @@ public class App extends Application {
 		controls.add(removeIndex, 1, 5);
 
 		addAItem = new Button("Add after Item");
-		addAItem.setMinSize(150, 30);
+		addAItem.setMinSize(200, 50);
 		addAItem.setOnAction(e -> {
 			list.addAfterItem(this.getItem(), this.getItem2());
 			refreshListUI();
@@ -157,7 +162,7 @@ public class App extends Application {
 		controls.add(addAItem, 0, 7);
 
 		addBItem = new Button("Add before Item");
-		addBItem.setMinSize(150, 30);
+		addBItem.setMinSize(200, 50);
 		addBItem.setOnAction(e -> {
 			list.addBeforeItem(this.getItem(), this.getItem2());
 			refreshListUI();
@@ -165,7 +170,7 @@ public class App extends Application {
 		controls.add(addBItem, 0, 6);
 
 		removeAItem = new Button("Remove after Item");
-		removeAItem.setMinSize(150, 30);
+		removeAItem.setMinSize(200, 50);
 		removeAItem.setOnAction(e -> {
 			list.removeAfterItem(this.getItem2());
 			refreshListUI();
@@ -173,7 +178,7 @@ public class App extends Application {
 		controls.add(removeAItem, 1, 7);
 
 		removeBItem = new Button("Remove before Item");
-		removeBItem.setMinSize(150, 30);
+		removeBItem.setMinSize(200, 50);
 		removeBItem.setOnAction(e -> {
 			list.removeBeforeItem(this.getItem2());
 			refreshListUI();
@@ -181,7 +186,7 @@ public class App extends Application {
 		controls.add(removeBItem, 1, 6);
 
 		removeSpec = new Button("Remove specific Item");
-		removeSpec.setMinSize(150, 30);
+		removeSpec.setMinSize(200, 50);
 		removeSpec.setOnAction(e -> {
 			list.removeSpecificItem(getItem2());
 			refreshListUI();
@@ -189,12 +194,34 @@ public class App extends Application {
 		controls.add(removeSpec, 1, 8);
 
 		sortByAlphabet = new Button("Sort by Alphabet");
-		sortByAlphabet.setMinSize(150, 30);
+		sortByAlphabet.setMinSize(200, 50);
 		sortByAlphabet.setOnAction(e -> {
 			list.sortByAlphabet();
 			refreshListUI();
 		});
 		controls.add(sortByAlphabet, 0, 8);
+
+		count = new TextField("20");
+		count.setMinSize(200, 50);
+		count.setFont(new Font(20));
+		count.textProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if (!newValue.matches("\\d*")) {
+					count.setText(newValue.replaceAll("[^\\d]", ""));
+				}
+			}
+		});
+		controls.add(count, 0, 9);
+
+		addRNDMObjects = new Button("Create Random Objects");
+		addRNDMObjects.setMinSize(200, 50);
+		addRNDMObjects.setOnAction(e -> {
+			createRNDMObjects(getCount());
+			refreshListUI();
+		});
+		controls.add(addRNDMObjects, 1, 9);
 
 //		Create output
 
@@ -203,8 +230,24 @@ public class App extends Application {
 		output.setVgap(18);
 		output.setPadding(new Insets(18));
 
+		scroll = new ScrollPane();
+		scroll.setContent(output);
+		scroll.setPrefWidth(500);
+		scroll.setStyle("-fx-base: transparent; -fx-background-color: transparent;");
+
 		refreshListUI();
 
+	}
+
+	private void createRNDMObjects(int count) {
+		String t = "";
+		for (int i = 0; i < Math.abs(count); i++) {
+			for (int j = 0; j < 5; j++) {
+				t = t + Character.toString((char) ((int) (Math.random() * 26) + 'A'));
+			}
+			list.addInLast(new Item(t));
+			t = "";
+		}
 	}
 
 	public void refreshListUI() {
@@ -244,12 +287,21 @@ public class App extends Application {
 
 	}
 
+	private int getCount() {
+		try {
+			return Integer.parseInt(count.getText());
+		} catch (NumberFormatException e) {
+			return 0;
+		}
+
+	}
+
 	@Override
 	public void start(Stage stg) {
 
 		brdrpn = new BorderPane();
 		brdrpn.setLeft(controls);
-		brdrpn.setCenter(output);
+		brdrpn.setCenter(scroll);
 		brdrpn.setBackground(null);
 		scn = new Scene(brdrpn, 666, 666, true);
 		scn.setFill(Color.rgb(40, 6, 60));
