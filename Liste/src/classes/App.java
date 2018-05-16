@@ -204,7 +204,8 @@ public class App extends Application {
 		});
 		controls.add(sortByAlphabet, 0, 8);
 
-		count = new TextField("20");
+		count = new TextField();
+		count.setPromptText("Count for RNDM");
 		count.setPrefSize(220, 40);
 		count.setFont(new Font(20));
 		count.textProperty().addListener(new ChangeListener<String>() {
@@ -313,14 +314,10 @@ public class App extends Application {
 		stg.setTitle("List");
 		stg.getIcons().add(new Image(getClass().getResourceAsStream("../img/icon.png")));
 
-		scn.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent e) {
+		scn.setOnKeyPressed(e -> {
 				if (e.getCode() == KeyCode.F11) {
 					stg.setFullScreen(!stg.isFullScreen());
 				}
-			}
 		});
 
 		stg.show();
